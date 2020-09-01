@@ -1,1 +1,1 @@
-# political-extremism-detection
+# Detection of Extremist Political Communities on Reddit
