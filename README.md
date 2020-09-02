@@ -83,19 +83,22 @@ Repo Navigation:
 |executive_notebook.ipynb<br>
 |<br>
 |data_sets<br>
+<!---
 |-crude_training_data.csv\[currently unavailable\]<br>
 |-refined_training_data.csv\[currently unavailable\]<br>
+---!>
 |-sub_counts.p<br>
 |-foreign_subs.p<br>
 |<br>
 |graphics<br>
 |-presentation-slideshow.pdf<br>
 |-readme_fs.png<br>
-|
+|<br>
+<!---
 |sub_notebooks<br>
 |-data_cleaning.ipynb<br>
 |-data_harvesting.ipynb<br>
-|<br>
+|<br>---!>
 |models<br>
 |<br>
 |ex_id_tools<br>
