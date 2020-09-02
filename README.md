@@ -79,31 +79,31 @@ An interesting implication of the need to train a model like this repeatedly wit
 
 Repo Navigation:
 
-|README.md
-|executive_notebook.ipynb
+|README.md<br>
+|executive_notebook.ipynb<br>
+|<br>
+|data_sets<br>
+|-crude_training_data.csv\[currently unavailable\]<br>
+|-refined_training_data.csv\[currently unavailable\]<br>
+|-sub_counts.p<br>
+|-foreign_subs.p<br>
+|<br>
+|graphics<br>
+|-presentation-slideshow.pdf<br>
+|-readme_fs.png<br>
 |
-|data_sets
-|-crude_training_data.csv
-|-refined_training_data.csv
-|-sub_counts.p
-|-foreign_subs.p
-|
-|graphics
-|-presentation-slideshow.pdf
-|-readme_fs.png
-|
-|sub_notebooks
-|-data_cleaning.ipynb
-|-data_harvesting.ipynb
-|
-|models
-|
-|ex_id_tools
-|-__init__.py
-|-data_processing.py
-|-foreign_sublist.p
-|-modelling.py
-|-text_cleaning.py
+|sub_notebooks<br>
+|-data_cleaning.ipynb<br>
+|-data_harvesting.ipynb<br>
+|<br>
+|models<br>
+|<br>
+|ex_id_tools<br>
+|-__init__.py<br>
+|-data_processing.py<br>
+|-foreign_sublist.p<br>
+|-modelling.py<br>
+|-text_cleaning.py<br>
 
 
 
