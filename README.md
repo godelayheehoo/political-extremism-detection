@@ -77,6 +77,38 @@ Behavior Online with Preexisting Internet Data](http://eegilbert.org/papers/chi2
 
 An interesting implication of the need to train a model like this repeatedly with the progression of time is its most specific use in detecting communities as they slowly morph and adopt new coded language and identifiers, with the assumption that such shifts have a slow enough propogation time that existing features can still be used for classification as novel features are incorporated. 
 
+Repo Navigation:
+
+|README.md
+|executive_notebook.ipynb
+|
+|data_sets
+|-crude_training_data.csv
+|-refined_training_data.csv
+|-sub_counts.p
+|-foreign_subs.p
+|
+|graphics
+|-presentation-slideshow.pdf
+|-readme_fs.png
+|
+|sub_notebooks
+|-data_cleaning.ipynb
+|-data_harvesting.ipynb
+|
+|models
+|
+|ex_id_tools
+|-__init__.py
+|-data_processing.py
+|-foreign_sublist.p
+|-modelling.py
+|-text_cleaning.py
+
+
+
+
+
 
 **Disclaimer:** Given the nature of the data being examined here, the raw text being examined- occasionally visible within the notebooks immediately- can at times be, well, quite extreme.  Please be aware. 
 
