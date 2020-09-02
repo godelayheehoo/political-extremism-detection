@@ -55,9 +55,28 @@ All models were created within a pipeline first consisting of TF-IDF vectorizati
 Smaller feature sizes produced similar results but did not correspond well with reasonability concerns.  Evaluation of these models within this space lead to a selection of Complement Naive Bayes as the preferred model selection, as it did well under both of the selection criterions given above. 
 
 
-
 ### Evaluation
 
-All models did very well, raising a strong spectre of overfitting not escaped by a train-test split due to initial difficulties in the initial sampling prospect; though there is reason to be optimistic given the perfomance on more difficult, held-back data as discussed in the executive notebook. 
+All models did very well, raising a strong spectre of overfitting not escaped by a train-test split due to initial difficulties in the initial sampling prospect; though there is reason to be optimistic given the perfomance on more difficult, held-back data as discussed in the executive notebook. It could also be that the endeavor is not particularly challenging for machine learning given the scope of the problem as stated.  This is perhaps quite reasonable, due to the twin well-stated propensities for fringe identity groups to use strong, specific in-group signifiers and symbols as well as for the level of such groups' focus on "the other" and to derivisively refer to and explicitly reference strong charateristic identifiers, which conveniently are those same ingroup identifiers just mentioned. 
 
-**Disclaimer:** Given the nature of the data being examined here, the raw text being examined, occasionally visible within the notebooks immediately, can at times be, well, quite extreme.  Please be aware. 
+
+<font color='green'>FI picture</font>
+
+
+Together, these perhaps help serve to create a dynamic that further identifies strong identifiers of ideological polarization regardless of particular orientation-- "brainworms" in the modern parlance-- that means that, as we'll see, despite most of the features found being nominally representative of far-right leanings, they serve quite well to also identify the far-left groups that spend much of their posts discussing those far-right groups.  This is a hypothesis and, while the success of this model seemingly being constant across both left- and right- groups being well-evidenced, the explanation given is speculative and should be subjected to further analysis. 
+
+The final selected model, complement naive bayes had a recall of 0.98 on the test set.  
+
+
+## Limitations and Further Improvements
+
+As mentioned, the collected data was obtained in suboptimal ways and a resampling or further sampling of the data would be advisable.  Similarly, it is unclear how extensible the model is in time.  It's extremely likely that retraining from time-to-time would be needed, however what is less clear is if all future times are as amenable to modelling as the one chosen. These months were specifically selected because they were not particularly distinct times politically; it's worth at least investigating if times of high political interet, e.g. around engagement times, result in more ready dissemination of niche political language to the general public and hence more difficulty in the training of an adequate model.  
+
+Overfitting is a concern here that's difficult to pin down with the level of selection that was used.  Evaluating performance on groups that were held back is advisable.  Sampling difficulties further emerge in the form of in-class imbalances between different subforums.  This was remarked upon and considered but not formally accounted for within the positive class in this project, however techniques do exist and should be incorporated into followup work, for instance in line with the recommendations made [here]().  Of particular interest are methods that attempt to offset the sparsity of the labelled data with either unlabelled data, a well-established technique in natual language classification problems not implemented here due to external constraints, and more novel methods in classification of communities using external comparisons in more sophisticated ways than the fairly brutish, by-fiat-but-reasonable-but-by-fiat assumptions of cultural homogeneity that justifies the method used here.  An example of such a work can be found here: [The Bag of Communities: Identifying Abusive
+Behavior Online with Preexisting Internet Data](http://eegilbert.org/papers/chi2017-chandrasekharan-boc.pdf). 
+
+An interesting implication of the need to train a model like this repeatedly with the progression of time is its most specific use in detecting communities as they slowly morph and adopt new coded language and identifiers, with the assumption that such shifts have a slow enough propogation time that existing features can still be used for classification as novel features are incorporated. 
+
+
+**Disclaimer:** Given the nature of the data being examined here, the raw text being examined- occasionally visible within the notebooks immediately- can at times be, well, quite extreme.  Please be aware. 
+
