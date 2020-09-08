@@ -3,6 +3,9 @@ import bz2
 import json
 import sqlite3
 import pandas as pd
+from psaw import PushshiftAPI
+import re
+
 
 
 
@@ -116,4 +119,80 @@ def database_create(database_name,source_files,verbose=False,make_new_table=Fals
         except:
             print(f'failed at {f}')
     return('all done :)')
+
+
+def count_subreddits(databse_name,verbose=False,chunksize=10**7):
+    '''
+    Creates subreddit frequencies from a sql database of posts
+    :param databse_name:
+    name of sql database
+    :param verbose:=False
+    sanity check, will print for each loaded chunk
+    :param chunksize:=10**7:
+    size for pandas chunks being loaded internally
+    :return:
+    '''
+    conn = sqlite3.connect(database_name)
+    c = conn.cursor()
+    sub_counts={}
+    #preparing count dictionary
+    #notice there's many perfectly valid sql queries you could do without involving pandas
+    #if you're into that sort of thing, but this helps give practice with chunking
+    #Here, we load the result of the sql query in as chunks and iterate over the chunks
+    for loaded_df in pd.read_sql("""SELECT subreddit FROM POSTS""", conn, chunksize=chunksize):
+        if verbose:
+            try:
+                n+=1
+            except:
+                n=0
+            print(f'loading df {n}')
+        loaded_counts = (loaded_df.subreddit.value_counts()).to_dict()
+        #Get subreddit counts for the currently loaded chunk of dataframe
+        for key in loaded_counts:
+            sub_counts[key] = sub_counts.get(key, 0) + loaded_counts[key]
+        #We add those results to our dictionary
+    # Overwrite the stupidly formatted subs
+    sub_counts = {key.upper(): value for key, value in sub_counts.items()}
+    return sub_counts
+
+
+def get_new_posts(subreddit_name,start_time=1506816000,end_time=1501545600):
+    api=PushshiftAPI()
+    gen=api.search_comments(subreddit=subreddit_name,after=end_time,before=start_time,
+                         filter='body', sort='desc', sort_by='created_utc',limit=100)
+    #Get the last 100 posts (the current limit is 100, so this is more to ensure future workability)
+    returns=[s.d_['body'] for s in gen if s.d_['body']!='[removed]' and s.d_['body']!='[deleted]']
+    returns=returns[::-1]
+    # Sort them correctly
+    #Filter out the removed and deleted posts-- note we then may get less than 100.
+    returns=' '.join(returns)
+    #join the posts together
+    returns=returns.lower()
+    #do the basic string preprocessing we did on our original data
+    returns=re.sub(r"[’']","",returns)
+    returns=re.sub('(\[.*\])\(.*\)','\g<1>',returns)
+    returns=re.sub(r"((http|https)\:\/\/)?[a-zA-Z0-9\.\/\?\:@\-_=#]+\.([a-zA-Z]){2,6}([a-zA-Z0-9\.\&\/\?\:@\-_=#])*",
+           ' ',
+           returns)
+    #regex expression from:
+    #https://stackoverflow.com/questions/6718633/python-regular-expression-again-match-url/48689681#48689681
+    returns=re.sub(r'[^\w\s/_]',' ',returns)
+    # #break  at non-valid symbols -- this is not ideal but is consistent with what was done before.
+    returns=re.sub(r'(\s){2,}',r'\g<1>',returns)
+    returns=re.sub(r'\s',' ',returns)
+    #Notice the \n \s problem here: sometimes you'll write
+    # like
+    # this
+    #and sometimes
+    #l
+    #i
+    #k
+    #e
+    #this
+    returns=re.sub('\S*(?:(?:(?<![ur])/)|(?:/(?!\w)))\S*',' ',returns)
+    #reformat usernames
+    returns=re.sub(r'(\s){2,}',r'\g<1>',returns)
+    #again clean multi-spaces.
+    return returns
+
 
