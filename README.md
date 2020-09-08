@@ -50,7 +50,8 @@ Standard NLP cleaning was done (tokenization, conversion of case, stripping spur
 
 All models were created within a pipeline first consisting of TF-IDF vectorization,  with varying parameters, followed by a random undersampling of the majority class (the positive class, an artifact of the data collection process) and then a classifier.  Multinomial Naive Bayes, Complement Naive Bayes, Linear Support Vector Machine, and Logistic Regressor Classification were examined. The latter two models were obtained by means of sklearn's implementation of stochastic gradient descent, with the appropriate loss function. Multinomial Naive Bayes was used initially as a baseline model and the relationship of its cross-validated performance to the maximum feature size allowed for in the TF-IDF vectorization was used for refinement of the feature space on which the models would then be evaluated, which was chosen to be 1000.  
 
-<font color='green'>performance picture</font>
+![sample sizes](/graphics/readme_fs.png)
+Format: !A Silly Graphic showing no real difference in performance across sample sizes](/graphics/readme_fs.png)
 
 Smaller feature sizes produced similar results but did not correspond well with reasonability concerns.  Evaluation of these models within this space lead to a selection of Complement Naive Bayes as the preferred model selection, as it did well under both of the selection criterions given above. 
 
