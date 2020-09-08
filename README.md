@@ -34,7 +34,7 @@ The second measure of success is the familiar sense of reasonableness as a safeg
 
 Our data was gathered by direct export from a data set available through pushhift.io's collection of reddit comments. The data unfortunately came "raw", with no strong attempt to avoid conflit with any potential .csv separators, and so much attention had to be paid to cleaning throughout the process. Two month's of data were used, representing all reddit comments from August and September of 2017. August of 2017 contained 84,658,503 posts; September contained 83,165,192. The use of two months was due to an external constraint; namely to make the data processing be even remotely feasible. The months chosen were semi-arbitrary, they fulfilled two criteria of not being obviously "special" with respect to political activity (somewhat removed in time from the previous election, not obviously around any major political stories relative to what's possible, etc) and being far enough back in time that it was possible to have some semblence of removednesses from current ongoings in order to try to assess media spotlighting of specific communities. 
 
-![sample sizes](/graphics/size_distribution_readme.png)
+![sample sizes](graphics/size_distribution_readme.png)
 
 
 
@@ -54,7 +54,7 @@ Standard NLP cleaning was done (tokenization, conversion of case, stripping spur
 
 All models were created within a pipeline first consisting of TF-IDF vectorization,  with varying parameters, followed by a random undersampling of the majority class (the positive class, an artifact of the data collection process) and then a classifier.  Multinomial Naive Bayes, Complement Naive Bayes, Linear Support Vector Machine, and Logistic Regressor Classification were examined. The latter two models were obtained by means of sklearn's implementation of stochastic gradient descent, with the appropriate loss function. Multinomial Naive Bayes was used initially as a baseline model and the relationship of its cross-validated performance to the maximum feature size allowed for in the TF-IDF vectorization was used for refinement of the feature space on which the models would then be evaluated, which was chosen to be 1000.  
 
-![sample sizes](/graphics/readme_fs.png)
+![sample sizes](graphics/readme_fs.png)
 
 Smaller feature sizes produced similar results but did not correspond well with reasonability concerns.  Evaluation of these models within this space lead to a selection of Complement Naive Bayes as the preferred model selection, as it did well under both of the selection criterions given above. 
 
@@ -117,7 +117,7 @@ Repo Navigation:
 |<br>
 |[models](models)<br>
 |<br>
-|ex_id_tools<br>
+|-ex_id_tools<br>
 |-\_\_init__.py<br>
 |-data_processing.py<br>
 |-foreign_sublist.p<br>
