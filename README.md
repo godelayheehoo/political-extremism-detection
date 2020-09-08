@@ -63,8 +63,7 @@ Smaller feature sizes produced similar results but did not correspond well with 
 
 All models did very well, raising a strong spectre of overfitting not escaped by a train-test split due to initial difficulties in the initial sampling prospect; though there is reason to be optimistic given the perfomance on more difficult, held-back data as discussed in the executive notebook. It could also be that the endeavor is not particularly challenging for machine learning given the scope of the problem as stated.  This is perhaps quite reasonable, due to the twin well-stated propensities for fringe identity groups to use strong, specific in-group signifiers and symbols as well as for the level of such groups' focus on "the other" and to derivisively refer to and explicitly reference strong charateristic identifiers, which conveniently are those same ingroup identifiers just mentioned. 
 
-
-<font color='green'>FI picture</font>
+![FIs](/graphics/FI_pictures_for_readme.png)
 
 
 Together, these perhaps help serve to create a dynamic that further identifies strong identifiers of ideological polarization regardless of particular orientation-- "brainworms" in the modern parlance-- that means that, as we'll see, despite most of the features found being nominally representative of far-right leanings, they serve quite well to also identify the far-left groups that spend much of their posts discussing those far-right groups.  This is a hypothesis and, while the success of this model seemingly being constant across both left- and right- groups being well-evidenced, the explanation given is speculative and should be subjected to further analysis. 
