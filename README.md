@@ -22,7 +22,7 @@ Each criteria has nuances to it, of course, but some prior decicision making pro
 
 ### Evaluation
 
-Two measures of success, one of which not being immediately quantitative and so not easily collapsible with the other into a single objective, errr, objective, were considered here.  First, directly: The goal here is to be aware of the presence and proliferation of "extreme" groups. This, along with the consideration that (almost by definition for a site in the position of Reddit) extreme communities must represent a small fraction of the users as a whole, suggests recall as the apppropriate metric for use; we wish to prioritize aptitude for catching those groups that are extreme.
+Two measures of success, one of which not being immediately quantitative and so not easily collapsible with the other into a single objective, errr, objective, were considered here.  First, directly: The goal here is to be aware of the presence and proliferation of "extreme" groups. This, along with the consideration that (almost by definition for a site in the position of Reddit) extreme communities must represent a small fraction of the users as a whole, suggests recall as the apppropriate metric for use; we wish to prioritize aptitude for catching those groups that are extreme.  This decision is discussed in more technical detail within the [executive notebook](executive_notebook.ipynb).
 
 The second measure of success is the familiar sense of reasonableness as a safeguard against overfitting or spurious results.  We seek an explainable (that is, not black-box) model so that decisions can be interrogated, further we wish to see identifiable features that at least in principle appear to make sense.  There is a real risk here of just learning quirks of the posts we're able to process, we'd like to see meaningful important features to suggest the opposite.  Models achieving a commendable recall but failing in this regard or rejected for that reason. 
 
@@ -46,7 +46,7 @@ Each post was grouped into sets of 100 sequential posts, thereafter referred to 
 
 The data was extremely noisy (the "raw" posts being raw in the truest sense, not having consistent formatting and encluding metacharacters, spuriously included text, etc.) and severe issues arising from this during the initial importing process were handled at that stage through automatic detection and removal, necessary for said import to proceed.  
 
-Standard NLP cleaning was done (tokenization, conversion of case, stripping spurious characters, etc) with some special considerations given to information context.  For example, the use of internal referrals on Reddit between communities and users are writtten as /r/subforumname or /u/username; cleaning attempted to preserve this information.  Details on cleaning are given in the <font color='red'>Data Cleaning</font> notebook. 
+Standard NLP cleaning was done (tokenization, conversion of case, stripping spurious characters, etc) with some special considerations given to information context.  For example, the use of internal referrals on Reddit between communities and users are writtten as /r/subforumname or /u/username; cleaning attempted to preserve this information.  Details on cleaning are given in the [executive notebook](executive_notebook.ipynb). 
 
 ## Modelling
 
@@ -80,27 +80,42 @@ Behavior Online with Preexisting Internet Data](http://eegilbert.org/papers/chi2
 
 An interesting implication of the need to train a model like this repeatedly with the progression of time is its most specific use in detecting communities as they slowly morph and adopt new coded language and identifiers, with the assumption that such shifts have a slow enough propogation time that existing features can still be used for classification as novel features are incorporated. 
 
+## Immediate Potential Next Steps
+
+With the model as presented in hand, the following actions could be taken immediately:
+- Trial automatic classification could be begun to gaugue real-world feasibility, an example of an API-based approach to this is available in the [executive notebook](executive_notebook.ipynb)
+- Support ticket/report flagging could be started using this model
+- Further training using the techniques outlined here, with simply a larger dataset downloaded from the same source, could be imlemented
+- Refinements as laid out in the previous section could be performed, followed by the above paths. 
+
 Repo Navigation:
 
 |README.md<br>
-|executive_notebook.ipynb<br>
+|[executive_notebook.ipynb](executive_notebook.ipynb)<br>
 |<br>
-|data_sets<br>
+|[data_sets](data_sets)<br>
 |<br>
 |-crude_training_data.csv\[currently unavailable\]<br>
 |-refined_training_data.csv\[currently unavailable\]<br>
 |-sub_counts.p<br>
 |-foreign_subs.p<br>
 |<br>
-|graphics<br>
+|[graphics](graphics)<br>
+|-FI_pictures_for_readme.png<br>
+|-filtered_data_sizes.png<br>
+|-importances_spread.png<br>
 |-presentation-slideshow.pdf<br>
-|-readme_fs.png<br>
+|-size_distribution.png<br>
+|-size_distribution_readme.png<br>
+|-success_rate.png<br>
+|-top_ten_extremity.png<br>
 |<br>
-|sub_notebooks<br>
+|[sub_notebooks](sub_notebooks)<br>
 |-data_cleaning.ipynb<br>
 |-data_harvesting.ipynb<br>
+|-graphics_production.ipynb<br>
 |<br>
-|models<br>
+|[models](models)<br>
 |<br>
 |ex_id_tools<br>
 |-\_\_init__.py<br>
